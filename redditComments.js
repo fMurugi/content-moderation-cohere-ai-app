@@ -25,13 +25,39 @@ const comments = new CommentStream(r, streamOpts);
 // Process each new post
 comments.on('item', (comment) => {
     // process the post here
-    console.log("new comment");
-    console.log(comment.body);
+    // console.log("new comment");
+    // console.log(comment.body);
     redditComments.push(comment.body);
     //call the cohere Ai
-    classifyComment(redditComments);
+    // let isToxic = classifyComment(redditComments);
+    // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    // console.log(isToxic);
+    // isToxic.forEach(element => {
+    //     if(element=='toxic'){
+    //         console.log(`TOXIC COMMENT FOUND : ${comment.body}`);
+    //         comment.delete().then(()=>{
+    //             console.log(`Toxic comment deleted`);
+    //         }).catch(error=>{
+    //             console.log(`error deleting comment`);
+    //         });
+    //     }
+    // });
+    classifyComment(redditComments ,(predictionsArray)=>{
+        console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        console.log(predictionsArray);
+        predictionsArray.forEach(element => {
+            if(element=="toxic"){
+                console.log(`found a toxic commet`);
+                comment.delete().then(()=>{
+                    console.log(`ttoxic comment deleted  ${comment.body}`);
 
+                }).catch((error)=>{
+                    console.log("error deleting commet");
+                })
+            }
+            
+        });
+    })
     
-
  
 });

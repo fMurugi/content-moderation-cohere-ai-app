@@ -5,9 +5,10 @@ const e = require('express');
 const exp = require('constants');
 cohere.init('55eAQlsqhW5o36ouGgRlHadOBM1ZSnry6StANmpN')
 
-function classifyComment(inputs){
+function classifyComment(inputs,callback){
     const examples = [];
     let examplesSliced=[];
+    let predictionsArray = [];
 // Load data from CSV file
 
 fs.createReadStream('./HateSpeechDetection.csv')
@@ -20,7 +21,7 @@ fs.createReadStream('./HateSpeechDetection.csv')
     // Add to examples array
     examples.push({ text: text, label: label });
   })
-  .on('end', () => {
+  .on('end', async () => {
     //get input from reddit or social media platform feed here 
     //if toxic remove the post automatically
     // const inputs = [
@@ -36,21 +37,32 @@ fs.createReadStream('./HateSpeechDetection.csv')
     // console.log(examplesSliced);
     console.log("****************************************************");
 
-    (async () => {
+   
       const response = await cohere.classify({
-        model:'large',
+        // model:'large',
         inputs: inputs,
         examples: examplesSliced,
       }).catch(error=>{console.log(error.message)});
       console.log(response);
       console.log("++++++++++++++++++++++++++++++++");
       console.log(response.body.classifications);
-      console.log(response.body.classifications[0].prediction);
-      //how do i get the prediction for evrything?
-      //delete the code
+    //   console.log(response.body.classifications[0].prediction);
+      response.body.classifications.forEach((classification) => {
+        // console.log(classification.prediction);
+        predictionsArray.push(classification.prediction);
+        console.log(predictionsArray);
+      });
       
-    })();
+      //how do i get the prediction for evrything?
+
+      //delete the comment
+
+
+  
+    callback(predictionsArray) ;
+
   });
+
 }
 
 module.exports= classifyComment;
