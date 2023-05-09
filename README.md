@@ -18,13 +18,13 @@ For testing purposes use subredit r/testyourapi.
 Clone the project
 
 ```bash
-  git clone https://
+  git clone https://github.com/fMurugi/content-moderation-cohere-ai-app.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd content-moderation-cohere-ai-app
 ```
 
 Install dependencies
@@ -36,6 +36,6 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
