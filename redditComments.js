@@ -54,6 +54,7 @@ comments.on('item', (comment) => {
                 }).catch((error)=>{
                     console.log("error deleting commet");
                 })
+                //otherwise
             }else{
                 console.log("found a benign comment");
             }
