@@ -11,13 +11,13 @@ const r = new Snoowrap({
   username: 'Pure-Astronaut9659',
   password: '5cPM698Fk9SfnLc'
 });
-console.log("______________________________________________");
+// console.log("______________________________________________");
 
 // Create a CommentStream to stream new posts containing a certain keyword from a subreddit
 const streamOpts = {
   subreddit: 'testYourApi',
   results: 1,
-  pollTime: 5000
+  pollTime: 2000
 };
 const comments = new CommentStream(r, streamOpts);
 // console.log(comments);
@@ -46,14 +46,16 @@ comments.on('item', (comment) => {
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         console.log(predictionsArray);
         predictionsArray.forEach(element => {
-            if(element=="toxic"){
+            if(element=='toxic'){
                 console.log(`found a toxic commet`);
                 comment.delete().then(()=>{
-                    console.log(`ttoxic comment deleted  ${comment.body}`);
+                    console.log(`toxic comment deleted : ${comment.body}`);
 
                 }).catch((error)=>{
                     console.log("error deleting commet");
                 })
+            }else{
+                console.log("found a benign comment");
             }
             
         });

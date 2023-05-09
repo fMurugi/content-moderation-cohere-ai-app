@@ -35,7 +35,7 @@ fs.createReadStream('./HateSpeechDetection.csv')
     // ];
    examplesSliced= examples.slice(0,500);
     // console.log(examplesSliced);
-    console.log("****************************************************");
+    // console.log("****************************************************");
 
    
       const response = await cohere.classify({
@@ -43,14 +43,14 @@ fs.createReadStream('./HateSpeechDetection.csv')
         inputs: inputs,
         examples: examplesSliced,
       }).catch(error=>{console.log(error.message)});
-      console.log(response);
-      console.log("++++++++++++++++++++++++++++++++");
-      console.log(response.body.classifications);
+    //   console.log(response);
+    //   console.log("++++++++++++++++++++++++++++++++");
+    //   console.log(response.body.classifications);
     //   console.log(response.body.classifications[0].prediction);
       response.body.classifications.forEach((classification) => {
         // console.log(classification.prediction);
         predictionsArray.push(classification.prediction);
-        console.log(predictionsArray);
+        // console.log(predictionsArray);
       });
       
       //how do i get the prediction for evrything?
