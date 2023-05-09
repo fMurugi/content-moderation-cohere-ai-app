@@ -1,11 +1,41 @@
-# content-moderation-cohere-ai-app
-# to run the app
-````
-node redditComments.js
-````
 
-go to reddit and open the subredit r/testyourapi
-comment on any post and if the comment is toxic it is going to be deleted.
+# content Moderation Cohere AI App
 
-# demo link
-https://www.youtube.com/watch?v=0lFn7fTRt1w
+Content Moderation ai app is an app to moderate commets on reddit. It checks if the commet is toxic and deletes.
+
+# How it works
+When a user with reddit account makes a commet on a post, the moderate access the contents of the commets and makes an analysis if it is toxic or not. If it is toxic the commet is deleted.
+For testing purposes use subredit r/testyourapi.
+
+# How To Run It Locally?
+  ## Prerequisites
+  - Node JS 
+  - Yarn or NPM
+  - Git
+  - Reddit account
+
+
+Clone the project
+
+```bash
+  git clone https://
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
